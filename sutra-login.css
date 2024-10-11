@@ -10,6 +10,8 @@ body {
     background-size: cover; /* Ensures the background image covers the whole area */
     background-position: center; /* Centers the background image */
     position: relative; /* Allows positioning of child elements */
+    padding-left: 20px; /* Adds padding left inside the body */
+    padding-right: 20px; /* Adds padding right inside the body */
 }
 
 .login-container {
