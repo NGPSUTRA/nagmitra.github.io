@@ -150,7 +150,7 @@ a {
 @media (max-width: 768px) {
 
     .banner img {
-        width: 30%; /* Adjusted size for mobile view */
+        width: 50%; /* Adjusted size for mobile view */
     }
 
     .content h1 {
@@ -158,11 +158,11 @@ a {
     }
 
     .content h2 {
-        font-size: 22px;
+        font-size: 18px;
     }
 
     .content h3 {
-        font-size: 22px;
+        font-size: 18px;
     }
 
     .content h4 {
