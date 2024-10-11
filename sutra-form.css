@@ -8,6 +8,8 @@ body {
     background-color: #f4f4f400;
     margin: 0;
     padding: 20px 0; /* Add top and bottom padding to the body */
+    padding-left: 20px; /* Add padding left to the body */
+    padding-right: 20px; /* Add padding left to the body */
     display: flex;
     justify-content: center;
     align-items: flex-start; /* Align form at the top initially */
