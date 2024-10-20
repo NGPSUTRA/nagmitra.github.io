@@ -21,54 +21,75 @@
         <form id="sutra-form" action="#" method="post" autocomplete="off">
             <label for="lp-id">ENTER LP ID</label>
             <input type="text" id="lp-id" name="lp-id" placeholder="ex. NGP3637" required pattern=".{7,8}" title="LP ID must be like ex.NGP1234" oninput="this.value = this.value.toUpperCase().replace(/\s/g, '')">
-            <div id="lp-name"></div>
+            <div id="lp-name"></div> <!-- Placeholder for LP Name -->
             <input type="hidden" id="lp-name-hidden" name="lp-name-hidden">
             <input type="hidden" id="lp-mobile-hidden" name="lp-mobile-hidden">
 
             <label for="alp-id">ENTER ALP ID</label>
             <input type="text" id="alp-id" name="alp-id" placeholder="EX. NGP3637" required pattern=".{7,8}" title="ALP ID must be like ex.NGP1234" oninput="this.value = this.value.toUpperCase().replace(/\s/g, '')">
-            <div id="alp-name"></div>
+            <div id="alp-name"></div> <!-- Placeholder for ALP Name -->
             <input type="hidden" id="alp-name-hidden" name="alp-name-hidden">
             <input type="hidden" id="alp-mobile-hidden" name="alp-mobile-hidden">
 
-            <label for="train-no">TRAIN NO.</label>
-            <input type="text" id="train-no" name="train-no" required>
+            <div class="form-group">
+                <label for="train-no">TRAIN NO.</label>
+                <input type="text" id="train-no" name="train-no" required>
+            </div>
 
-            <label for="loco-no">LOCO NO.</label>
-            <input type="text" id="loco-no" name="loco-no" required>
+            <div class="form-group">
+                <label for="loco-no">LOCO NO.</label>
+                <input type="text" id="loco-no" name="loco-no" required>
+            </div>
 
-            <label for="sign-on-date">SIGN ON DATE</label>
-            <input type="date" id="sign-on-date" name="sign-on-date" required>
+            <div class="form-group">
+                <label for="sign-on-date">SIGN ON DATE</label>
+                <input type="date" id="sign-on-date" name="sign-on-date" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="sign-on-time">SIGN ON TIME</label>
+                <input type="text" id="sign-on-time" name="sign-on-time" required>
+            </div>
 
-            <label for="sign-on-time">SIGN ON TIME</label>
-            <input type="text" id="sign-on-time" name="sign-on-time" required>
+            <div class="form-group">
+                <label for="direction">SELECT DIRECTION</label>
+                <select id="direction" name="direction" required>
+                    <option value="" disabled selected>SELECT</option>
+                    <option value="UP">UP</option>
+                    <option value="DN">DN</option>
+                    <option value="UP CIC">UP CIC</option>
+                    <option value="DN CIC">DN CIC</option>
+                </select>
+            </div>
 
-            <label for="direction">SELECT DIRECTION</label>
-            <select id="direction" name="direction" required>
-                <option value="" disabled selected>SELECT</option>
-                <option value="UP">UP</option>
-                <option value="DN">DN</option>
-                <option value="UP CIC">UP CIC</option>
-                <option value="DN CIC">DN CIC</option>
-            </select>
+            <div class="form-group">
+                <label for="last-passed-station">LAST PASSED STATION CODE</label>
+                <input type="text" id="last-passed-station" name="last-passed-station" required oninput="this.value = this.value.toUpperCase().replace(/[^A-Z]/g, '').slice(0, 4)">
+            </div>
 
-            <label for="last-passed-station">LAST PASSED STATION CODE</label>
-            <input type="text" id="last-passed-station" name="last-passed-station" required oninput="this.value = this.value.toUpperCase().replace(/[^A-Z]/g, '').slice(0, 4)">
+            <div class="form-group">
+                <label for="ml-cic">TLC ML/CIC</label>
+                <select id="ml-cic" name="ml-cic" required>
+                    <option value="" disabled selected>SELECT</option>
+                    <option value="BSP-CPH-DIPKA">BSP-CPH-DIPKA</option>
+                    <option value="SGRD-RIG-JSG">SGRD-RIG-JSG</option>
+                    <option value="CIC">CIC</option>
+                </select>
+            </div>
 
-            <label for="ml-cic">TLC ML/CIC</label>
-            <select id="ml-cic" name="ml-cic" required>
-                <option value="" disabled selected>SELECT</option>
-                <option value="BSP-CPH-DIPKA">BSP-CPH-DIPKA</option>
-                <option value="SGRD-RIG-JSG">SGRD-RIG-JSG</option>
-                <option value="CIC">CIC</option>
-            </select>
-            <input type="hidden" id="timestamp" name="timestamp">
-            <button type="submit">SUBMIT</button>
+            <div class="form-group">
+                <input type="hidden" id="timestamp" name="timestamp">
+                <button type="submit">SUBMIT</button>
+            </div>
         </form>
-    </div>
-    <!-- Spinner Container -->
-    <div id="spinner-container" style="display:none;">
-        <img src="spinner.gif" alt="Loading..." id="spinner">
+            
+
+        <!-- Spinner Container -->
+        <div id="spinner-container" style="display:none;">
+            <img src="spinner.gif" alt="Loading..." id="spinner">
+        </div>
+        
+        <div id="message"></div>
     </div>
 
 
@@ -78,7 +99,7 @@
     <script>
         // Check if user is logged in
         /* if (sessionStorage.getItem('isLoggedIn') !== 'true') {
-            If not logged in, redirect to the login page
+            // If not logged in, redirect to the login page
             window.location.href = 'sutra-login.html';
         }
 

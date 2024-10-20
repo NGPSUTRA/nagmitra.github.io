@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const signOnDate = document.getElementById("sign-on-date").value;
         const signOnTime = document.getElementById("sign-on-time").value;
 
-        // fetch properly name nad number of LP and ALP
+        // fetch properly name and number of LP and ALP
         const lpName = document.getElementById("lp-name-hidden").value;
         const alpName = document.getElementById("alp-name-hidden").value;
         console.log("LP Name:", lpName);
@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // Disable the submit button
         submitButton.disabled = true;
     
-        fetch('https://script.google.com/macros/s/AKfycbzj6q4tr9DtNqpFIAZGIKPXTHkV1FC5X-dVOXPS7aW-XoeDuuymjylBJpDVVIKnfo8U5g/exec', {
+        fetch('', { // Replace with your Web App URL
             method: 'POST',
             body: uppercaseFormData
         })
@@ -121,7 +121,8 @@ document.addEventListener("DOMContentLoaded", function() {
             spinnerContainer.style.display = "none";
     
             if (data.result === 'success') {
-                if (confirm('Form submitted successfully! Click OK to go to the homepage.')) {
+                // Show success message and redirect after user clicks OK
+                if (confirm('Form submitted successfully! Click OK to go to the Homepage.')) {
                     window.location.href = 'index.html';
                 }
             } else {
@@ -131,9 +132,12 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         })
         .catch(error => {
+            // Hide spinner in case of error
             spinnerContainer.style.display = "none";
+
+            // Re-enable the submit button and show error message
             submitButton.disabled = false;
-            document.getElementById("message").textContent = "Error submitting form.";
+            document.getElementById("message").textContent = "Error Submitting Form.";
             console.error("Error:", error);
         });
     });
@@ -149,8 +153,7 @@ document.addEventListener("DOMContentLoaded", function() {
         
         return `${day}/${month}/${year} ${time}`;  // Format: "DD/MM/YYYY HH:MM:SS"
     }
-    
-    
+        
     // Function to format the timestamp as "DD/MM/YYYY HH:MM:SS"
     function formatTimestamp(date) {
         const day = String(date.getDate()).padStart(2, '0');
@@ -163,8 +166,6 @@ document.addEventListener("DOMContentLoaded", function() {
         return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
     }
     
-    
-
     // Function to handle logout
     document.querySelector('.logout-button').addEventListener('click', function() {
         sessionStorage.removeItem('isLoggedIn');

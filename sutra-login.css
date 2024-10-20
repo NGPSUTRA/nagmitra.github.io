@@ -51,7 +51,7 @@ body {
 }
 
 .login-container button {
-    width: 105%; /* Makes the button take up the full width of the container */
+    width: 106%; /* Makes the button take up the full width of the container */
     padding: 10px; /* Adds padding inside the button */
     background-color: #007BFF; /* Sets the button color to a blue shade */
     color: white; /* Makes the button text white */

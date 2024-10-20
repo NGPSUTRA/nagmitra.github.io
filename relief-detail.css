@@ -1,11 +1,10 @@
 /* General body styling */
 body {
-    background-image: url('sutra-form-background.png');
+    background-image: url('relief-detail-background.png');
     background-size: cover; /* Ensures the background image covers the whole area */
     background-position: center; /* Centers the background image */
     position: relative; /* Allows positioning of child elements */
     font-family: Arial, sans-serif;
-    background-color: #f4f4f400;
     margin: 0;
     padding: 20px 0; /* Add top and bottom padding to the body */
     padding-left: 20px; /* Add padding left to the body */
@@ -16,57 +15,31 @@ body {
     min-height: 100vh; /* Ensure the body takes at least the full viewport height */
 }
 
-/* Form container styling */
 .form-container {
     background-color: #ffffffa5;
-    padding: 20px;
+    padding: 20px; /* Reduced padding for better spacing */
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
+    width: 100%; /* Reduced width for better display on mobile */
     max-width: 500px;
-    margin: auto; /* Center the form horizontally */
+    margin: auto; /* Center the form and prevent it from touching the edges */
     position: relative;
     margin-top: 20px; /* Ensure it's not too close to the top */
 }
 
-/* Logout button styling */
-.logout-button {
-    position: absolute;
-    top: 23px;
-    right: 20px;
-    padding: 8px 16px;
-    background-color: #dc3545;
-    color: #fff;
-    border: 1px solid #fff;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 10px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.logout-button:hover {
-    background-color: #fff;
-    color: #dc3545;
-}
-
-/* Form title styling */
-.form-container h2 {
+h2 {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 20px; /* Adjusted margin to prevent overlap */
     color: #333;
     margin-top: 0;
     font-size: 30px;
     font-family: 'Lora', serif;
 }
 
-/* Welcome message styling */
-#welcome-message {
-    font-family: 'Lora', serif;
-    text-align: center;
-    font-size: 14px;
-    color: #545353;
-    margin-bottom: 20px;
-    font-weight: bold;
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; /* Ensure form elements take up full width */
 }
 
 .form-group {
@@ -76,29 +49,27 @@ body {
     margin-bottom: 20px;
 }
 
-/* Label styling */
 label {
-    display: block;
     margin-bottom: 5px;
-    color: #333;
     font-weight: bold;
+    color: #333;
+    text-transform: uppercase;
+    font-size: 1rem;
     text-align: left; /* Align labels to the left */
 }
 
-/* Input field styling */
 input[type="text"],
-input[type="date"],
 input[type="time"],
-textarea,
+input[type="date"],
 select {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     color: #333;
     border-radius: 5px;
+    text-transform: uppercase;
     font-size: 16px; /* Uniform font size for all input fields */
     box-sizing: border-box;
-    text-transform: uppercase; /* Ensure text is always uppercase */
 }
 
 /* Read-only input fields */
@@ -152,6 +123,25 @@ button[type="submit"]:hover {
     font-size: 1rem; /* Responsive font size */
 }
 
+@media (max-width: 600px) {
+    .form-container {
+        padding: 15px; /* Reduced padding for smaller screens */
+    }
+
+    input[type="text"],
+    input[type="time"],
+    input[type="date"],
+    select,
+    button[type="submit"] {
+        font-size: 14px; /* Consistent font size */
+        padding: 8px;
+    }
+
+    #message {
+        font-size: 0.9rem; /* Smaller font size for the message */
+    }
+}
+
 /* Spinner styling */
 #spinner-container {
     position: fixed;
@@ -168,47 +158,4 @@ button[type="submit"]:hover {
 #spinner {
     width: 50px; /* Adjust size as needed */
     height: 50px;
-}
-
-/* Media query for smaller devices */
-@media (max-width: 600px) {
-    .form-container {
-        padding: 15px;
-    }
-
-    input[type="text"],
-    input[type="date"],
-    input[type="time"],
-    select,
-    button[type="submit"] {
-        font-size: 14px; /* Consistent font size */
-        padding: 8px;
-    }
-
-    #message {
-        font-size: 0.9rem; /* Smaller font size for the message */
-    }
-}
-
-/* Responsive adjustments for smaller screens */
-@media (max-width: 768px) {
-
-    .logout-button {
-        position: absolute;
-        top: 20px;
-        right: 15px;
-        padding: 8px 16px;
-        background-color: #dc3545;
-        color: #fff;
-        border: 1px solid #fff;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 10px;
-        transition: background-color 0.3s ease, color 0.3s ease;
-    }
-    
-    .logout-button:hover {
-        background-color: #fff;
-        color: #dc3545;
-    }
 }
