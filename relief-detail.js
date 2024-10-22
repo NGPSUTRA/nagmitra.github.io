@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function() {
             formData.set(key, value.toUpperCase());
         }
 
-        fetch('', { // Replace with your Web App URL
+        fetch('https://script.google.com/macros/s/AKfycbwm8qIiM812OEQHmtYsxZ-nBpC0nv6ldGrUOOl-yAppfBC4LkzfPiXw7OG9nQjKn-wc/exec', { // Replace with your Web App URL
             method: 'POST',
             body: formData
         })
