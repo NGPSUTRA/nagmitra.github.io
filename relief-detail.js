@@ -81,13 +81,39 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("relief-form").addEventListener("submit", function(e) {
         e.preventDefault();
 
+        // Get the values of the date and time fields
+        const reliefDate = document.getElementById("relief-date").value;
+        const reliefTime = document.getElementById("relief-time").value;
+
+        // fetch properly name and number of LP and ALP
+        const lpName = document.getElementById("lp-name-hidden").value;
+        const alpName = document.getElementById("alp-name-hidden").value;
+        console.log("LP Name:", lpName);
+        console.log("ALP Name:", alpName);
+
+        // Combine date and time into the desired format
+        const formattedSignOnDateTime = formatDateTime(reliefDate, reliefTime);
+
+        // Log the formatted date-time value for debugging
+        console.log("Formatted Sign-On DateTime:", formattedSignOnDateTime);
+        
+        // Update the value of the sign-on-time input to include both date and time
+        document.getElementById("sign-on-time").value = formattedSignOnDateTime;
+
+        // Capture current timestamp in the required format
+        const currentTimestamp = formatTimestamp(new Date());
+        document.getElementById("timestamp").value = currentTimestamp;
+
+        // Proceed with form submission
         const formData = new FormData(e.target);
         const submitButton = e.target.querySelector('button[type="submit"]');
         const spinner = document.getElementById('spinner'); // Reference to the spinner
 
-        // Disable the submit button and show the spinner
+        // Show the spinner
+        spinnerContainer.style.display = "block";
+
+        // Disable the submit button
         submitButton.disabled = true;
-        spinner.style.display = 'flex';
 
         // Set the timestamp
         const timestamp = new Date().toISOString();
