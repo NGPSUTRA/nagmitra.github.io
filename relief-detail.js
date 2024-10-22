@@ -115,14 +115,14 @@ document.addEventListener("DOMContentLoaded", function() {
         // Disable the submit button
         submitButton.disabled = true;
 
-        // Set the timestamp
+        /*// Set the timestamp
         const timestamp = new Date().toISOString();
         document.getElementById('timestamp').value = timestamp;
 
         // Convert all form data to uppercase
         for (let [key, value] of formData.entries()) {
             formData.set(key, value.toUpperCase());
-        }
+        }*/
 
         fetch('https://script.google.com/macros/s/AKfycbwm8qIiM812OEQHmtYsxZ-nBpC0nv6ldGrUOOl-yAppfBC4LkzfPiXw7OG9nQjKn-wc/exec', { // Replace with your Web App URL
             method: 'POST',
@@ -153,4 +153,28 @@ document.addEventListener("DOMContentLoaded", function() {
             console.error("Error:", error);
         });
     });
+
+    // Function to format the date and time as "DD/MM/YYYY HH:MM:SS"
+    function formatDateTime(date, time) {
+        const [year, month, day] = date.split("-");
+        
+        // Ensure that time does not already include seconds
+        if (time.length === 5) {  // If time is in "HH:MM" format
+            time += ":00";  // Add seconds only if not present
+        }
+        
+        return `${day}/${month}/${year} ${time}`;  // Format: "DD/MM/YYYY HH:MM:SS"
+    }
+        
+    // Function to format the timestamp as "DD/MM/YYYY HH:MM:SS"
+    function formatTimestamp(date) {
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+        const year = date.getFullYear();
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+        const seconds = String(date.getSeconds()).padStart(2, '0');
+    
+        return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+    }
 });
