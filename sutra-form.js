@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // Disable the submit button
         submitButton.disabled = true;
     
-        fetch('https://script.google.com/macros/s/AKfycbwiAnlcbEhuUwj3xDiotNCqQyGnwqnN3qDTYulQcq2r6h5s4It5JHUNpED74vz38T_Zwg/exec', { // Replace with your Web App URL
+        fetch('https://script.google.com/macros/s/AKfycbyb4UnIGHk4hHDRNX8Hrd0asE07t4QD-k_EUw3crydDlv_S7TqOhKI__8ye-O0bKC6VCQ/exec', { // Replace with your Web App URL
             method: 'POST',
             body: uppercaseFormData
         })
