@@ -52,8 +52,9 @@ document.addEventListener("DOMContentLoaded", function() {
     // Event listener for LP ID input
     document.getElementById("lp-id").addEventListener("input", function() {
         const id = this.value.toUpperCase();
-        const name = nameLookup[id] || '';
-        document.getElementById("lp-name").textContent = name ? `Name: ${name}` : '';
+        const info = nameLookup[id] || '';
+        const name = info.name || 'PLEASE CHECK ID';
+        document.getElementById("lp-name").textContent = name !== 'PLEASE CHECK ID' ? `Name: ${name}` : '';
         document.getElementById("lp-name-hidden").value = name;
     });
 
