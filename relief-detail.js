@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Function to handle ID input and display name or error message
     function handleIdInput(id, nameElementId, nameHiddenElementId) {
-        const info = nameLookup[id] || '';
+        const info = nameLookup[id] || {};
         const name = info.name || 'PLEASE CHECK ID';
         document.getElementById(nameElementId).textContent = name !== 'PLEASE CHECK ID' ? `Name: ${name}` : name;
         document.getElementById(nameHiddenElementId).value = name !== 'PLEASE CHECK ID' ? name : '';
