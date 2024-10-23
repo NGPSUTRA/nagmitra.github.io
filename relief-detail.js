@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const data = await response.text();
         const rows = data.split('\n').map(row => row.split(','));
         return rows.reduce((acc, [id, name]) => {
-            acc[id.toUpperCase()] = { name }; // Convert ID to uppercase for case-insensitive matching
+            acc[id.toUpperCase()] = name; // Convert ID to uppercase for case-insensitive matching
             return acc;
         }, {});
     }
@@ -25,8 +25,8 @@ document.addEventListener("DOMContentLoaded", function() {
     let nameLookup = {};
 
     // Load names on page load
-    fetchNames().then(data => {
-        nameLookup = data;
+    fetchNames().then(names => {
+        nameLookup = names;
     });
 
     // Function to set the current date
