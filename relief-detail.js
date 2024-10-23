@@ -77,6 +77,15 @@ document.addEventListener("DOMContentLoaded", function() {
         time_24hr: true // Ensures the picker uses 24-hour format
     });
 
+    // Function to convert form data to uppercase
+    function convertFormDataToUpperCase(formData) {
+        const newFormData = new FormData();
+        formData.forEach((value, key) => {
+            newFormData.append(key, value.toUpperCase());
+        });
+        return newFormData;
+    }
+
     // Form submission logic
     document.getElementById("relief-form").addEventListener("submit", function(e) {
         e.preventDefault();
