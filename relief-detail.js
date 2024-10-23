@@ -15,8 +15,8 @@ document.addEventListener("DOMContentLoaded", function() {
         const response = await fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vTnGJsECSsHaqp1pQySQZ7SzjCCBRxaWU9o2L5rMb_cdYpDieAVexbfrrPviD1NK17RVFwBJeE2eGpi/pub?output=csv');
         const data = await response.text();
         const rows = data.split('\n').map(row => row.split(','));
-        return rows.reduce((acc, [id, name]) => {
-            acc[id.toUpperCase()] = name; // Convert ID to uppercase for case-insensitive matching
+        return rows.reduce((acc, [id, name, password, mobile]) => {
+            acc[id.toUpperCase()] = { name, mobile }; // Convert ID to uppercase for case-insensitive matching
             return acc;
         }, {});
     }
@@ -25,8 +25,8 @@ document.addEventListener("DOMContentLoaded", function() {
     let nameLookup = {};
 
     // Load names on page load
-    fetchNames().then(names => {
-        nameLookup = names;
+    fetchNames().then(data => {
+        nameLookup = data;
     });
 
     // Function to set the current date
@@ -47,15 +47,26 @@ document.addEventListener("DOMContentLoaded", function() {
     // Call the function to set the current date on page load
     setCurrentDate();
 
-    
+    // Function to handle ID input and display name or error message
+    function handleIdInput(id, nameElementId, nameHiddenElementId, mobileHiddenElementId) {
+        const info = nameLookup[id] || {};
+        const name = info.name || 'PLEASE CHECK ID';
+        const mobile = info.mobile || '';
+        document.getElementById(nameElementId).textContent = name !== 'PLEASE CHECK ID' ? `Name: ${name}` : name;
+        document.getElementById(nameHiddenElementId).value = name !== 'PLEASE CHECK ID' ? name : '';
+        document.getElementById(mobileHiddenElementId).value = name !== 'PLEASE CHECK ID' ? mobile : '';
+    }
 
     // Event listener for LP ID input
     document.getElementById("lp-id").addEventListener("input", function() {
         const id = this.value.toUpperCase();
-        const info = nameLookup[id] || '';
-        const name = info.name || 'PLEASE CHECK ID';
-        document.getElementById("lp-name").textContent = name !== 'PLEASE CHECK ID' ? `Name: ${name}` : '';
-        document.getElementById("lp-name-hidden").value = name !== 'PLEASE CHECK ID' ? '' : name;
+        handleIdInput(id, "lp-name", "lp-name-hidden", "lp-mobile-hidden");
+    });
+
+    // Event listener for ALP ID input
+    document.getElementById("alp-id").addEventListener("input", function() {
+        const id = this.value.toUpperCase();
+        handleIdInput(id, "alp-name", "alp-name-hidden", "alp-mobile-hidden");
     });
 
     // Initialize Flatpickr for the time input with 24-hour format
