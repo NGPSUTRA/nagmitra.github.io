@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const info = nameLookup[id] || {};
         const name = info.name || 'PLEASE CHECK ID';
         const mobile = info.mobile || 'PLEASE CHECK ID';
-        document.getElementById(nameElementId).textContent = name !== 'PLEASE CHECK ID' ? `Name: ${name} and ${mobile}` : name;
+        document.getElementById(nameElementId).textContent = name !== 'PLEASE CHECK ID' ? `Name: ${name} ${(mobile)}` : name;
         document.getElementById(nameHiddenElementId).value = name !== 'PLEASE CHECK ID' ? name : '';
         document.getElementById(mobileHiddenElementId).value = name !== 'PLEASE CHECK ID' ? mobile : '';
     }
