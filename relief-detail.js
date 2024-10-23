@@ -25,8 +25,8 @@ document.addEventListener("DOMContentLoaded", function() {
     let nameLookup = {};
 
     // Load names on page load
-    fetchNames().then(names => {
-        nameLookup = names;
+    fetchNames().then(data => {
+        nameLookup = data;
     });
 
     // Function to set the current date
