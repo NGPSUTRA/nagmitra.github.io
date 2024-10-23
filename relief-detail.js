@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Call the function to set the current date on page load
     setCurrentDate();
 
-    // Function to handle ID input and display name or error message
+    /* // Function to handle ID input and display name or error message
     function handleIdInput(id, nameElementId, nameHiddenElementId) {
         const info = nameLookup[id] || {};
         const name = info.name || 'PLEASE CHECK ID';
@@ -65,6 +65,14 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("alp-id").addEventListener("input", function() {
         const id = this.value.toUpperCase();
         handleIdInput(id, "alp-name", "alp-name-hidden");
+    }); */
+
+    // Event listener for LP ID input
+    document.getElementById("lp-id").addEventListener("input", function() {
+        const id = this.value.toUpperCase();
+        const name = nameLookup[id] || '';
+        document.getElementById("lp-name").textContent = name ? `Name: ${name}` : '';
+        document.getElementById("lp-name-hidden").value = name;
     });
 
     // Initialize Flatpickr for the time input with 24-hour format
