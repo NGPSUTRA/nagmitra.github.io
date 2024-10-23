@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const info = nameLookup[id] || '';
         const name = info.name || 'PLEASE CHECK ID';
         document.getElementById("lp-name").textContent = name !== 'PLEASE CHECK ID' ? `Name: ${name}` : '';
-        document.getElementById("lp-name-hidden").value = name;
+        // document.getElementById("lp-name-hidden").value = name !== 'PLEASE CHECK ID' ? name : '';
     });
 
     // Initialize Flatpickr for the time input with 24-hour format
