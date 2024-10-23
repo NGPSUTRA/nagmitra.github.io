@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function handleIdInput(id, nameElementId, nameHiddenElementId, mobileHiddenElementId) {
         const info = nameLookup[id] || {};
         const name = info.name || 'PLEASE CHECK ID';
-        const mobile = info.mobile || '';
+        const mobile = info.mobile || 'PLEASE CHECK ID';
         document.getElementById(nameElementId).textContent = name !== 'PLEASE CHECK ID' ? `Name: ${name}` : name;
         document.getElementById(nameHiddenElementId).value = name !== 'PLEASE CHECK ID' ? name : '';
         document.getElementById(mobileHiddenElementId).value = name !== 'PLEASE CHECK ID' ? mobile : '';
