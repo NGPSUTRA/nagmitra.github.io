@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const info = nameLookup[id] || {};
         const name = info.name || 'PLEASE CHECK ID';
         document.getElementById(nameElementId).textContent = name !== 'PLEASE CHECK ID' ? `Name: ${name}` : '';
-        document.getElementById(nameHiddenElementId).value = name;
+        document.getElementById(nameHiddenElementId).value = name !== 'PLEASE CHECK ID' ? name : '';
     }
 
     // Event listener for LP ID input
