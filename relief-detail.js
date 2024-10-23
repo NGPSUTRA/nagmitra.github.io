@@ -106,8 +106,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Proceed with form submission
         const formData = new FormData(e.target);
+        const uppercaseFormData = convertFormDataToUpperCase(formData);
         const submitButton = e.target.querySelector('button[type="submit"]');
-        const spinner = document.getElementById('spinner'); // Reference to the spinner
+        const spinnerContainer = document.getElementById("spinner-container"); // Reference to the spinner
 
         // Show the spinner
         spinnerContainer.style.display = "block";
@@ -115,22 +116,13 @@ document.addEventListener("DOMContentLoaded", function() {
         // Disable the submit button
         submitButton.disabled = true;
 
-        /*// Set the timestamp
-        const timestamp = new Date().toISOString();
-        document.getElementById('timestamp').value = timestamp;
-
-        // Convert all form data to uppercase
-        for (let [key, value] of formData.entries()) {
-            formData.set(key, value.toUpperCase());
-        }*/
-
         fetch('https://script.google.com/macros/s/AKfycbwm8qIiM812OEQHmtYsxZ-nBpC0nv6ldGrUOOl-yAppfBC4LkzfPiXw7OG9nQjKn-wc/exec', { // Replace with your Web App URL
             method: 'POST',
-            body: formData
+            body: uppercaseFormData
         })
         .then(response => response.json())
         .then(data => {
-            spinner.style.display = 'none'; // Hide spinner after submission
+            spinnerContainer.style.display = 'none'; // Hide spinner after submission
 
             if (data.result === 'success') {
                 // Show success message and redirect after user clicks OK
@@ -145,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .catch(error => {
             // Hide spinner in case of error
-            spinner.style.display = 'none';
+            spinnerContainer.style.display = 'none';
 
             // Re-enable the submit button and show error message
             submitButton.disabled = false;
