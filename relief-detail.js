@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const data = await response.text();
         const rows = data.split('\n').map(row => row.split(','));
         return rows.reduce((acc, [id, name]) => {
-            acc[id.toUpperCase()] = name; // Convert ID to uppercase for case-insensitive matching
+            acc[id.toUpperCase()] = { name }; // Convert ID to uppercase for case-insensitive matching
             return acc;
         }, {});
     }
@@ -48,25 +48,23 @@ document.addEventListener("DOMContentLoaded", function() {
     setCurrentDate();
 
     // Function to handle ID input and display name or error message
-    function handleIdInput(id, nameElementId, nameHiddenElementId, mobileHiddenElementId) {
+    function handleIdInput(id, nameElementId, nameHiddenElementId) {
         const info = nameLookup[id] || {};
         const name = info.name || 'PLEASE CHECK ID';
-        const mobile = info.mobile || '';
         document.getElementById(nameElementId).textContent = name !== 'PLEASE CHECK ID' ? `Name: ${name}` : name;
         document.getElementById(nameHiddenElementId).value = name !== 'PLEASE CHECK ID' ? name : '';
-        document.getElementById(mobileHiddenElementId).value = name !== 'PLEASE CHECK ID' ? mobile : '';
     }
 
     // Event listener for LP ID input
     document.getElementById("lp-id").addEventListener("input", function() {
         const id = this.value.toUpperCase();
-        handleIdInput(id, "lp-name", "lp-name-hidden", "lp-mobile-hidden");
+        handleIdInput(id, "lp-name", "lp-name-hidden");
     });
 
     // Event listener for ALP ID input
     document.getElementById("alp-id").addEventListener("input", function() {
         const id = this.value.toUpperCase();
-        handleIdInput(id, "alp-name", "alp-name-hidden", "alp-mobile-hidden");
+        handleIdInput(id, "alp-name", "alp-name-hidden");
     });
 
     // Initialize Flatpickr for the time input with 24-hour format
